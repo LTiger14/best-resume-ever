@@ -2,23 +2,14 @@
 <div class="resume">
   <div class="leftCol m_box">
     <div class="shadow"></div>
-    <div class="heading" id="myselfpic">
+    <div class="title">
+      <h2>{{person.name.first}} {{person.name.middle}} {{person.name.last}}</h2>
+    <div>{{person.position}}</div>
     </div>
     <div class="section-headline">
       {{ lang.contact }}
     </div>
-    <div class="item">
-      <div class="icon">
-        <i class="material-icons">account_circle</i>
-      </div>
-      <div class="text">
-        <ul>
-          <li> {{ lang.born }} {{person.birth.year}} {{ lang.bornIn }} {{person.birth.location}}</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="item">
+    <div class="item first">
       <div class="icon">
         <i class="material-icons">location_city</i>
       </div>
@@ -75,7 +66,7 @@
       </div>
     </a>
 
-    <div class="item last">
+    <div class="item">
       <div class="section-headline">
         {{ lang.skills }}
       </div>
@@ -90,26 +81,36 @@
         </div>
       </div>
     </div>
+
+    <div class="item last">
+      <div class="section-headline">
+        {{ lang.lang }}
+      </div>
+      <div class="skill" v-for="language in person.Languages" :key="language.name">
+        <div class="right">
+          <span>{{language.name}}&nbsp;</span>
+          <div class="progress">
+            <div class="determinate" :style="'width: '+language.level+'%;'">
+              <i class="fa fa-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="rightCol">
-    <div class="title">
-      <h2>{{person.name.first}} {{person.name.middle}} {{person.name.last}}</h2>
-      <div>{{person.position}}</div>
-    </div>
 
     <div class="section-headline">{{ lang.experience }}</div>
     <div class="block" v-for="experience in person.experience" :key="experience.company">
-      <div class="block-helper"></div>
       <h3 class="headline">{{experience.position}} - {{experience.company}}</h3>
         <div class="subheadline">{{experience.timeperiod}}</div>
-        <p class="info">
-          {{experience.description}}
-        </p>
+        <ul class="info">
+          <li class="job-point" v-for="description in experience.description" :key="description.point">{{description.point}}</li>
+        </ul>
     </div>
     <div class="section-headline">{{ lang.education }}</div>
     <div class="block" v-for="education in person.education" :key="education.degree">
-      <div class="block-helper"></div>
       <div class="headline">{{education.degree}}</div>
       <p class="info">
         {{education.timeperiod}}, {{education.description}}
@@ -133,7 +134,6 @@ export default Vue.component(name, getVueOptions(name));
 <style lang="less" scoped>
 .resume {
   font-family:'Roboto' !important;
-  background:#cccccc;
 }
 a {
   cursor:pointer;
@@ -150,25 +150,23 @@ a {
   padding-left:20px;
   padding-top:20px;
   bottom:25px;
+  color: white;
   h2 {
     text-transform:uppercase;
     display:block;
-    font-size:1.17em;
+    font-size:1.8em;
     -webkit-margin-before:1em;
     -webkit-margin-after:1em;
     -webkit-margin-start:0;
     -webkit-margin-end:0;
     color:white;
-    color:rgba(0,0,0,0.7);
     padding-top:0;
     margin-top:0;
-    letter-spacing:10px;
-    font-weight:400;
+    letter-spacing:3px;
+    font-weight:600;
   }
   div {
-    margin-top:-5px;
-    margin-top:0;
-    margin:0;
+    margin-top:10px;
     padding:0;
     line-height:15pt;
     font-weight:300;
@@ -176,8 +174,6 @@ a {
     letter-spacing:2px;
     letter-spacing:3px;
     color:white;
-    color:#16151c;
-    color:rgba(63,61,60,0.71);
     display:block;
     font-size:0.67em;
     font-size:10pt;
@@ -196,23 +192,19 @@ a {
   font-size:10pt;
   opacity:0.8;
   margin-left:20px;
-  margin-top:40px;
-  margin-bottom:20px;
+  margin-top:20px;
+  margin-bottom:10px;
   color:#3f3d3c;
+}
+.rightCol .section-headline {
+  font-size: 18px;
+  margin-left: 9px;
+  padding: 2px;
+  border-top: 1px solid #3f3d3c;
+  border-bottom: 1px solid #3f3d3c;
 }
 .c {
   clear:both;
-}
-li {
-  margin:0;
-  padding:0;
-  list-style-type:none;
-  padding-top:9px;
-}
-ul {
-  margin:0;
-  padding:0;
-  list-style-type:none;
 }
 p {
   margin-top:0;
@@ -259,20 +251,20 @@ h4 {
   float:right;
   display:flex;
   flex-direction:column;
+  margin-right: 10px;
   .block {
     width:90%;
     position:relative;
-    background-color:#ffffff;
-    padding:20px;
+    padding:10px;
     margin-top:5px;
     margin-bottom:5px;
     display:inline-block;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     .headline {
       font-weight:300;
       display:block;
-      font-size:15px;
+      font-size:18px;
       color:rgba(0,0,0,0.870588);
+      font-weight: 500;
     }
     .subheadline {
       color:rgba(0,0,0,0.541176);
@@ -283,8 +275,16 @@ h4 {
     .info {
       font-size:14px;
       color:rgba(0,0,0,0.870588);
-      margin-bottom:0;
-      padding-top:20px;
+      margin:0;
+      padding: 0;
+      padding-left: 10px;
+      margin-top: 5px;
+      margin-left: 5px;
+
+      .job-point {
+        font-size: 14px;
+        line-height: 1.5em;
+      }
     }
     .icon {
       width:16%;
@@ -378,11 +378,20 @@ h4 {
       display:block;
       font-size:15px;
       font-weight:300;
-      li {
-        padding-top:0;
-        display:block;
-        font-size:15px;
-        font-weight:300;
+      ul {
+        margin:0;
+        padding:0;
+        list-style-type:none;
+        li {
+          padding-top:0;
+          display:block;
+          font-size:15px;
+          font-weight:300;
+          margin:0;
+          padding:0;
+          list-style-type:none;
+          padding-top:9px;
+        }
       }
     }
     span {
@@ -433,14 +442,13 @@ h4 {
       }
     }
   }
+  .item.first {
+    margin-top: 0;
+  }
   .item.last .text {
     border-bottom-style:none;
     padding-bottom:0;
   }
-}
-#myselfpic {
-  background-image:url('../../resume/id.jpg');
-  color:black;
 }
 #githubIcon {
   width:25px;

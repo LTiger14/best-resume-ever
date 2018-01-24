@@ -6,19 +6,23 @@
   <div class="row text-center">
     <p class="position center">{{person.position}}</p>
   </div>
-  <div class="row">
-    <div class="image center">
-      <div class="img"></div>
+  <div class="experience">
+    <h3>{{ lang.experience }}</h3>
+    <div class="experience-block" v-for="experience in person.experience" :key="experience.company">
+      <span class="company"> {{experience.company}} </span>
+      <span class="job-title"> {{experience.position}} </span>
+      <span class="time-period"> {{experience.timeperiod}}</span>
+      <ul class="job-description">
+        <li class="job-point" v-for="description in experience.description" :key="description.point"> {{description.point}} </li>
+      </ul>
     </div>
   </div>
   <div class="left half">
-    <div class="experience">
-      <h3>{{ lang.experience }}</h3>
-      <div class="experience-block" v-for="experience in person.experience" :key="experience.company">
-        <span class="company"> {{experience.company}} </span>
-        <span class="job-title"> {{experience.position}} </span>
-        <span class="time-period"> {{experience.timeperiod}}</span>
-        <span class="job-description"> {{experience.description}} </span>
+    <div class="education">
+      <h3>{{ lang.education }}</h3>
+      <div class="education-block" v-for="education in person.education" :key="education.degree">
+        <span class="degree">{{education.degree}}</span>
+        <span class="degree-description">{{education.description}}</span>
       </div>
     </div>
     <div class="contact">
@@ -48,13 +52,6 @@
     </div>
   </div>
   <div class="right half">
-    <div class="education">
-      <h3>{{ lang.education }}</h3>
-      <div class="education-block" v-for="education in person.education" :key="education.degree">
-        <span class="degree">{{education.degree}}</span>
-        <span class="degree-description">{{education.description}}</span>
-      </div>
-    </div>
     <h3>{{ lang.skills }}</h3>
     <div class="skills">
       <div class="skill-block" v-for="skill in person.skills" :key="skill.name">
@@ -133,7 +130,7 @@ export default Vue.component(name, getVueOptions(name));
     font-family:'Open Sans', sans-serif;
     font-size:smaller;
     color:#757575;
-    margin-bottom:40px;
+    margin-bottom:0;
   }
   .image {
     width:100px;
@@ -166,6 +163,21 @@ export default Vue.component(name, getVueOptions(name));
         vertical-align:top;
       }
     }
+  }
+  .job-description {
+    text-align: justify;
+  }
+  .experience {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+  ul {
+    margin: 0;
+  }
+  li {
+    padding: 5px;
+    font-size: 18px;
   }
   .experience .experience-block span {
     width:100%;

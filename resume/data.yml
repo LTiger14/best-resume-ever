@@ -16,17 +16,20 @@ experience:
 - company: Company A
   position: Developer
   timeperiod: since January 2016
-  description: Programming and watching cute cat videos.
+  description:
+  - point: Programming and watching cute cat videos.
 
 - company: Company B
   position: Frontend Developer
   timeperiod: January 2015 - December 2015
-  description: Fulfillment of extremely important tasks.
+  description: 
+  - point: Fulfillment of extremely important tasks.
 
 - company: Company C
   position: Trainee
   timeperiod: March 2014 - December 2014
-  description: Making coffee and baking cookies.
+  description: 
+  - point: Making coffee and baking cookies.
 
 education:
 - degree: Master of Arts
@@ -57,6 +60,12 @@ skills:
   level: 99
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
   (English and Klingon).
+
+Languages:
+- name: Francais
+  level: 100
+- name: English
+  level: 100
 
 contact:
   email: john.doe@email.com
