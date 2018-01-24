@@ -34,11 +34,20 @@ experience:
 education:
 - degree: Master of Arts
   timeperiod: March 2012 - December 2013
-  description: Major in Hacking and Computer Penetration, University A, New York, USA.
+  description: Major in Hacking and Computer Penetration, University A.
+  city: New York, USA
 
 - degree: Bachelor of Science
   timeperiod: March 2009 - December 2011
-  description: Major in Engineering, University B, Los Angeles, USA.
+  description: Major in Engineering, University B.
+  city: Los Angeles, USA
+
+projects:
+- title: Building a coffee machine
+  timeperiod: March 2011 - June 2011
+  description:
+  - point: Build the outside
+  - point: Build the inside
 
 # skill level goes 0 to 100
 skills:

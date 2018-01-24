@@ -112,9 +112,17 @@
     <div class="section-headline">{{ lang.education }}</div>
     <div class="block" v-for="education in person.education" :key="education.degree">
       <div class="headline">{{education.degree}}</div>
-      <p class="info">
-        {{education.timeperiod}}, {{education.description}}
-      </p>
+      <span class="subheadline">{{education.timeperiod}}</span>
+      <span class="school">{{education.description}}</span>
+      <span class="city">{{education.city}}</span>
+    </div>
+    <div class="section-headline">{{ lang.projects }}</div>
+    <div class="block" v-for="projects in person.projects" :key="projects.title">
+      <h3 class="headline">{{projects.title}}</h3>
+        <div class="subheadline">{{projects.timeperiod}}</div>
+        <ul class="info">
+          <li class="job-point" v-for="description in projects.description" :key="description.point">{{description.point}}</li>
+        </ul>
     </div>
   </div>
 
@@ -328,6 +336,17 @@ h4 {
         border-bottom-style:none;
         border-bottom-style:none;
       }
+    }
+    .school {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5em;
+      margin-top: 5px;
+    }
+    .city {
+      font-size: 14px;
+      font-weight: 400;
     }
   }
 }
